@@ -25,170 +25,199 @@ int _tmain(int argc, _TCHAR* argv[])
 	// Input for the player's name.
 	cin >> fName;
 
-	// The bool for the restart of the game.
-	bool starting = true;
-
-	// Start of the game.
-	while (starting == true)
+	if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
 	{
-		int answerCup = 0; // The correct answer for the cup.
-		int guessCup = 0; // The Number for the guessed cup.
-		char diff = 'z'; // The difficulty selector.
-		char resetDiff = 'q'; // The way to restart the difficulty selector.
-		int numCups = 0; // The number of cups based off of difficulty.
-		const char *numCupsText = ""; // The generated text for how many cups there is.
-		char newGame = 'a'; // The selector for restarting the game.
-		bool gameCheck = false; // Check to see if the game is over.
-		bool lost = false; // Check to see if the player lost the game.
+		cin.clear();
+		cin.ignore(256,'\n');
 
-		// Set up the random number generator.
-		srand(time(NULL));
+		cout << "Please use a real const char.\n";
+	}
+	else
+	{
+		// The bool for the restart of the game.
+		bool starting = true;
 
-		cout << "Hello, " << fName << "!\n";
-
-		cout << "What difficulty do you want to play on?\n";
-
-		cout << "[e]asy, [m]edium, [h]ard\n";
-
-		// The difficulty selector.
-		while (resetDiff != diff)
+		// Start of the game.
+		while (starting == true)
 		{
-			// The input for which difficulty to play on.
-			cin >> diff;
+			int answerCup = 0; // The correct answer for the cup.
+			int guessCup = 0; // The Number for the guessed cup.
+			char diff = 'z'; // The difficulty selector.
+			char resetDiff = 'q'; // The way to restart the difficulty selector.
+			int numCups = 0; // The number of cups based off of difficulty.
+			const char *numCupsText = ""; // The generated text for how many cups there is.
+			char newGame = 'a'; // The selector for restarting the game.
+			bool gameCheck = false; // Check to see if the game is over.
+			bool lost = false; // Check to see if the player lost the game.
 
-			switch (diff)
+			// Set up the random number generator.
+			srand(time(NULL));
+
+			cout << "Hello, " << fName << "!\n";
+
+			cout << "What difficulty do you want to play on?\n";
+
+			cout << "[e]asy, [m]edium, [h]ard\n";
+
+			// The difficulty selector.
+			while (resetDiff != diff)
 			{
-				case 'e':
-					cout << "You have chosen Easy\n";
-					resetDiff = 'e';
-					numCups = 3;
-					numCupsText = "(1,2,3)";
-					break;
-				case 'm':
-					cout << "You have chosen Medium\n";
-					resetDiff = 'm';
-					numCups = 4;
-					numCupsText = "(1,2,3,4)";
-					break;
-				case 'h':
-					cout << "You Have chosen Hard\n";
-					resetDiff = 'h';
-					numCups = 5;
-					numCupsText = "(1,2,3,4,5)";
-					break;
-				default:
-					// Needed this for the chance the player inputs the wrong letter.
-					cout << "Please choose a real difficulty\n";
-					resetDiff = 'q';
-					diff = 'z';
-			}
-		}
+				// The input for which difficulty to play on.
+				cin >> diff;
 
-		cout << "Guess which cup has the little ball. " << numCupsText << "\n";
-
-		// Generate the answer to which cup the ball is in.
-		answerCup = rand() % numCups + 1;
-
-		// Start the game.
-		while (gameCheck == false)
-		{
-			// Input for the guessed cup.
-			cin >> guessCup;
-
-			if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
-			{
-				cin.clear();
-				cin.ignore(256,'\n');
-
-				cout << "Please use a real number.\n";
-			}
-			else
-			{
-				if (guessCup > numCups)
+				if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
 				{
-					// This is to tell if the guessed cup is in range.
-					cout << "Sorry that is not within the range...\n";
-				}
-				else if (guessCup <= 0)
-				{
-					// This is to tell if the guessed cup is in range.
-					cout << "Sorry that is not within the range...\n";
-				}
-				else if (guessCup != answerCup)
-				{
-					// This is to check if the player lost.
-					cout << "Sorry, " << guessCup << " is the wrong cup.\n";
-	
-					lost = true; // The player has lost.
-					gameCheck = true; // The game is over.
+					cin.clear();
+					cin.ignore(256,'\n');
+
+					cout << "Error: Please use a valid char.\n";
 				}
 				else
 				{
-					// This is to check if the player has won.
-					cout << "Yay, " << guessCup << " is the correct cup, " << fName << "...\n";
-	
-					gameCheck = true; // The game is over.
-					lost = false; // The player didn't lose.
+					switch (diff)
+					{
+						case 'e':
+							cout << "You have chosen Easy\n";
+							resetDiff = 'e';
+							numCups = 3;
+							numCupsText = "(1,2,3)";
+							break;
+						case 'm':
+							cout << "You have chosen Medium\n";
+							resetDiff = 'm';
+							numCups = 4;
+							numCupsText = "(1,2,3,4)";
+							break;
+						case 'h':
+							cout << "You Have chosen Hard\n";
+							resetDiff = 'h';
+							numCups = 5;
+							numCupsText = "(1,2,3,4,5)";
+							break;
+						default:
+							// Needed this for the chance the player inputs the wrong letter.
+							cout << "Please choose a real difficulty\n";
+							resetDiff = 'q';
+							diff = 'z';
+					}
 				}
 			}
-		}
 
-		// The message if the player has won or not.
-		if (gameCheck == true && lost == false)
-		{
-			// This is to display that the player has won.
-			cout << "You won!!!\n";
-		}
-		else if (lost == true && gameCheck == true)
-		{
-			// This is to display that the player has lost.
-			cout << "Sorry, " << fName << ", you lost... You guessed, Cup #" << guessCup << ", The correct cup was, Cup #" << answerCup << ".\n";
-		}
-		else
-		{
-			// Just incase the player has gotten to this part and didn't end the game and didn't win or did win.
-			cout << "How did you get to this output???\nYou didn't win nor lost...\nSkiping ahead...\n";
-		}
+			cout << "Guess which cup has the little ball. " << numCupsText << "\n";
 
-		cout << "New Game? (y/n)\n";
+			// Generate the answer to which cup the ball is in.
+			answerCup = rand() % numCups + 1;
 
-		// This is to select a new game.
-		while (newGame == 'a')
-		{
-			// This is the input for the new game.
-			cin >> newGame;
-
-			if (newGame == 'y' || newGame == 'Y')
+			// Start the game.
+			while (gameCheck == false)
 			{
-				// This is to check if the player said yes.
-				// This is the way to clear the state for the new game.
-				system("cls");
+				// Input for the guessed cup.
+				cin >> guessCup;
 
-				// This is to say that the game is restarting
-				starting = true;
+				if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
+				{
+					cin.clear();
+					cin.ignore(256,'\n');
 
-				// At this part the game is restarting.
+					cout << "Error: Please use a valid int.\n";
+				}
+				else
+				{
+					if (guessCup > numCups)
+					{
+						// This is to tell if the guessed cup is in range.
+						cout << "Sorry that is not within the range...\n";
+					}
+					else if (guessCup <= 0)
+					{
+						// This is to tell if the guessed cup is in range.
+						cout << "Sorry that is not within the range...\n";
+					}
+					else if (guessCup != answerCup)
+					{
+						// This is to check if the player lost.
+						cout << "Sorry, " << guessCup << " is the wrong cup.\n";
+
+						lost = true; // The player has lost.
+						gameCheck = true; // The game is over.
+					}
+					else
+					{
+						// This is to check if the player has won.
+						cout << "Yay, " << guessCup << " is the correct cup, " << fName << "...\n";
+
+						gameCheck = true; // The game is over.
+						lost = false; // The player didn't lose.
+					}
+				}
 			}
-			else if (newGame == 'n' || newGame == 'N')
+
+			// The message if the player has won or not.
+			if (gameCheck == true && lost == false)
 			{
-				// This is to check if the player said no.
-				cout << "OK, bye...\n";
-
-				// This is to say the game isn't restarting
-				starting = false;
-
-				// At this point the game ends.
+				// This is to display that the player has won.
+				cout << "You won!!!\n";
+			}
+			else if (lost == true && gameCheck == true)
+			{
+				// This is to display that the player has lost.
+				cout << "Sorry, " << fName << ", you lost... You guessed, Cup #" << guessCup << ", The correct cup was, Cup #" << answerCup << ".\n";
 			}
 			else
 			{
-				// This is if you choose an invalid awnser.
-				cout << "Please Choose another awnser\n";
+				// Just incase the player has gotten to this part and didn't end the game and didn't win or did win.
+				cout << "How did you get to this output???\nYou didn't win nor lost...\nSkiping ahead...\n";
+			}
 
-				// This is to restart to choose again.
-				newGame = 'a';
+			cout << "New Game? (y/n)\n";
+
+			// This is to select a new game.
+			while (newGame == 'a')
+			{
+				// This is the input for the new game.
+				cin >> newGame;
+
+				if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
+				{
+					cin.clear();
+					cin.ignore(256,'\n');
+
+					cout << "Error: Please use an valid char.\n";
+				}
+				else
+				{
+					if (newGame == 'y' || newGame == 'Y')
+					{
+						// This is to check if the player said yes.
+						// This is the way to clear the state for the new game.
+						system("cls");
+
+						// This is to say that the game is restarting
+						starting = true;
+
+						// At this part the game is restarting.
+					}
+					else if (newGame == 'n' || newGame == 'N')
+					{
+						// This is to check if the player said no.
+						cout << "OK, bye...\n";
+
+						// This is to say the game isn't restarting
+						starting = false;
+
+						// At this point the game ends.
+					}
+					else
+					{
+						// This is if you choose an invalid awnser.
+						cout << "Please Choose another awnser\n";
+
+						// This is to restart to choose again.
+						newGame = 'a';
+					}
+				}
 			}
 		}
 	}
-
 	return 0;
 }
