@@ -91,10 +91,16 @@ int _tmain(int argc, _TCHAR* argv[])
 							numCupsText = "(1,2,3,4,5)";
 							break;
 						case 'h':
-							cout << "You Have chosen Hard.\n";
+							cout << "You have chosen Hard.\n";
 							resetDiff = 'h';
 							numCups = 7;
 							numCupsText = "(1,2,3,4,5,7)";
+							break;
+						case 'x':
+							cout << "You have chosen Extreme.\n";
+							resetDiff = 'x';
+							numCups = 11;
+							numCupsText = "(1,2,3,4,5,6,7,8,9,10,11)";
 							break;
 						default:
 							// Needed this for the chance the player inputs the wrong letter.
