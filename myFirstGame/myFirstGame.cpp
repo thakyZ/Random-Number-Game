@@ -95,31 +95,41 @@ int _tmain(int argc, _TCHAR* argv[])
 			// Input for the guessed cup.
 			cin >> guessCup;
 
-			if (guessCup > numCups)
+			if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
 			{
-				// This is to tell if the guessed cup is in range.
-				cout << "Sorry that is not within the range...\n";
-			}
-			else if (guessCup <= 0)
-			{
-				// This is to tell if the guessed cup is in range.
-				cout << "Sorry that is not within the range...\n";
-			}
-			else if (guessCup != answerCup)
-			{
-				// This is to check if the player lost.
-				cout << "Sorry, " << guessCup << " is the wrong cup.\n";
+				cin.clear();
+				cin.ignore(256,'\n');
 
-				lost = true; // The player has lost.
-				gameCheck = true; // The game is over.
+				cout << "Please use a real number.\n";
 			}
 			else
 			{
-				// This is to check if the player has won.
-				cout << "Yay, " << guessCup << " is the correct cup, " << fName << "...\n";
-
-				gameCheck = true; // The game is over.
-				lost = false; // The player didn't lose.
+				if (guessCup > numCups)
+				{
+					// This is to tell if the guessed cup is in range.
+					cout << "Sorry that is not within the range...\n";
+				}
+				else if (guessCup <= 0)
+				{
+					// This is to tell if the guessed cup is in range.
+					cout << "Sorry that is not within the range...\n";
+				}
+				else if (guessCup != answerCup)
+				{
+					// This is to check if the player lost.
+					cout << "Sorry, " << guessCup << " is the wrong cup.\n";
+	
+					lost = true; // The player has lost.
+					gameCheck = true; // The game is over.
+				}
+				else
+				{
+					// This is to check if the player has won.
+					cout << "Yay, " << guessCup << " is the correct cup, " << fName << "...\n";
+	
+					gameCheck = true; // The game is over.
+					lost = false; // The player didn't lose.
+				}
 			}
 		}
 
