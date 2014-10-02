@@ -1,5 +1,5 @@
 // myFirstGame.cpp : Defines the entry point for the console application.
-//
+// Created by, Nick Mullally a.k.a. Nire Inicana or thakyZ
 
 #include "stdafx.h"
 #include <iostream>
@@ -10,29 +10,38 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	// Clear console.
 	system("cls");
 
+	// Variable for the player's name.
 	char fName[20];
+
+	cout << "Welcome to guess which cup has the little ball.\n";
+
+	cout << "Created by, Nick Mullally\n";
 
 	cout << "What is your name?\n";
 
+	// Input for the player's name.
 	cin >> fName;
 
-	bool starting = false;
+	// The bool for the restart of the game.
+	bool starting = true;
 
-	while (starting == false)
+	// Start of the game.
+	while (starting == true)
 	{
-		int guessF = 0;
-		bool secondGuess = false;
-		char diff = 'z';
-		char resetDiff = 'q';
-		int numCups = 0;
-		const char *numCupsText = "";
-		char menu = 'a';
-		bool menuChoose = false;
-		bool won = false;
-		bool lost = false;
+		int answerCup = 0; // The correct answer for the cup.
+		int guessCup = 0; // The Number for the guessed cup.
+		char diff = 'z'; // The difficulty selector.
+		char resetDiff = 'q'; // The way to restart the difficulty selector.
+		int numCups = 0; // The number of cups based off of difficulty.
+		const char *numCupsText = ""; // The generated text for how many cups there is.
+		char newGame = 'a'; // The selector for restarting the game.
+		bool gameCheck = false; // Check to see if the game is over.
+		bool lost = false; // Check to see if the player lost the game.
 
+		// Set up the random number generator.
 		srand(time(NULL));
 
 		cout << "Hello, " << fName << "!\n";
@@ -41,111 +50,135 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		cout << "[e]asy, [m]edium, [h]ard\n";
 
-
+		// The difficulty selector.
 		while (resetDiff != diff)
 		{
+			// The input for which difficulty to play on.
 			cin >> diff;
 
 			switch (diff)
 			{
-			case 'e':
-				cout << "You have chosen Easy\n";
-				resetDiff = 'e';
-				numCups = 3;
-				numCupsText = "(1,2,3)";
-				break;
-			case 'm':
-				cout << "You have chosen Medium\n";
-				resetDiff = 'm';
-				numCups = 4;
-				numCupsText = "(1,2,3,4)";
-				break;
-			case 'h':
-				cout << "You Have chosen Hard\n";
-				resetDiff = 'h';
-				numCups = 5;
-				numCupsText = "(1,2,3,4,5)";
-				break;
-			default:
-				cout << "Please choose a real difficulty\n";
-				resetDiff = 'q';
-				diff = 'z';
+				case 'e':
+					cout << "You have chosen Easy\n";
+					resetDiff = 'e';
+					numCups = 3;
+					numCupsText = "(1,2,3)";
+					break;
+				case 'm':
+					cout << "You have chosen Medium\n";
+					resetDiff = 'm';
+					numCups = 4;
+					numCupsText = "(1,2,3,4)";
+					break;
+				case 'h':
+					cout << "You Have chosen Hard\n";
+					resetDiff = 'h';
+					numCups = 5;
+					numCupsText = "(1,2,3,4,5)";
+					break;
+				default:
+					// Needed this for the chance the player inputs the wrong letter.
+					cout << "Please choose a real difficulty\n";
+					resetDiff = 'q';
+					diff = 'z';
 			}
 		}
 
 		cout << "Guess which cup has the little ball. " << numCupsText << "\n";
 
-		int awnserF = rand() % numCups + 1;
+		// Generate the answer to which cup the ball is in.
+		answerCup = rand() % numCups + 1;
 
-		while (won == false)
+		// Start the game.
+		while (gameCheck == false)
 		{
-			cin >> guessF;
+			// Input for the guessed cup.
+			cin >> guessCup;
 
-			if (guessF > numCups)
+			if (guessCup > numCups)
 			{
+				// This is to tell if the guessed cup is in range.
 				cout << "Sorry that is not within the range...\n";
 			}
-			else if (guessF <= 0)
+			else if (guessCup <= 0)
 			{
+				// This is to tell if the guessed cup is in range.
 				cout << "Sorry that is not within the range...\n";
 			}
-			else if (guessF != awnserF)
+			else if (guessCup != answerCup)
 			{
-				cout << "Sorry, " << guessF << " is the wrong cup.\n";
+				// This is to check if the player lost.
+				cout << "Sorry, " << guessCup << " is the wrong cup.\n";
 
-				lost = true;
-				won = true;
+				lost = true; // The player has lost.
+				gameCheck = true; // The game is over.
 			}
 			else
 			{
-				cout << "Yay, " << guessF << " is the correct cup, " << fName << "...\n";
+				// This is to check if the player has won.
+				cout << "Yay, " << guessCup << " is the correct cup, " << fName << "...\n";
 
-				won = true;
-				lost = false;
+				gameCheck = true; // The game is over.
+				lost = false; // The player didn't lose.
 			}
 		}
 
-		if (won == true && lost == false)
+		// The message if the player has won or not.
+		if (gameCheck == true && lost == false)
 		{
+			// This is to display that the player has won.
 			cout << "You won!!!\n";
 		}
-		else if (lost == true && won == true)
+		else if (lost == true && gameCheck == true)
 		{
-			cout << "Sorry, " << fName << ", you lost...\n";
+			// This is to display that the player has lost.
+			cout << "Sorry, " << fName << ", you lost... You guessed, Cup #" << guessCup << ", The correct cup was, Cup #" << answerCup << ".\n";
 		}
 		else
 		{
+			// Just incase the player has gotten to this part and didn't end the game and didn't win or did win.
 			cout << "How did you get to this output???\nYou didn't win nor lost...\nSkiping ahead...\n";
 		}
 
 		cout << "New Game? (y/n)\n";
-		
-		while (menuChoose == false)
-		{
-			cin >> menu;
 
-			if (menu == 'y' || menu == 'Y')
+		// This is to select a new game.
+		while (newGame == 'a')
+		{
+			// This is the input for the new game.
+			cin >> newGame;
+
+			if (newGame == 'y' || newGame == 'Y')
 			{
+				// This is to check if the player said yes.
+				// This is the way to clear the state for the new game.
 				system("cls");
 
-				starting = false;
-
-				menuChoose = true;
-			}
-			else if (menu == 'n' || menu == 'N')
-			{
-				cout << "OK, bye...\n";
-
+				// This is to say that the game is restarting
 				starting = true;
 
-				menuChoose = true;
+				// At this part the game is restarting.
+			}
+			else if (newGame == 'n' || newGame == 'N')
+			{
+				// This is to check if the player said no.
+				cout << "OK, bye...\n";
+
+				// This is to say the game isn't restarting
+				starting = false;
+
+				// At this point the game ends.
 			}
 			else
 			{
+				// This is if you choose an invalid awnser.
 				cout << "Please Choose another awnser\n";
 
-				menuChoose = false;
+				// This is to restart to choose again.
+				newGame = 'a';
 			}
 		}
 	}
+
+	return 0;
 }
