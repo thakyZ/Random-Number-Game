@@ -18,19 +18,20 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	cout << "Welcome to guess which cup has the little ball.\n";
 
-	cout << "Created by, Nick Mullally\n";
+	cout << "Created by, Nick Mullally\n\n";
 
 	cout << "What is your name?\n";
 
 	// Input for the player's name.
 	cin >> fName;
 
+	// Check if fName is a valid char.
 	if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
 	{
 		cin.clear();
 		cin.ignore(256,'\n');
 
-		cout << "Please use a real const char.\n";
+		cout << "Please use a valid const char.\n";
 	}
 	else
 	{
@@ -55,7 +56,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			cout << "Hello, " << fName << "!\n";
 
-			cout << "What difficulty do you want to play on?\n";
+			cout << "What difficulty do you want to play on, " << fName << "?\n";
 
 			cout << "[e]asy, [m]edium, [h]ard\n";
 
@@ -65,6 +66,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				// The input for which difficulty to play on.
 				cin >> diff;
 
+				// Check to see if diff is a vail char.
 				if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
 				{
 					cin.clear();
@@ -77,19 +79,19 @@ int _tmain(int argc, _TCHAR* argv[])
 					switch (diff)
 					{
 						case 'e':
-							cout << "You have chosen Easy\n";
+							cout << "You have chosen Easy.\n";
 							resetDiff = 'e';
 							numCups = 3;
 							numCupsText = "(1,2,3)";
 							break;
 						case 'm':
-							cout << "You have chosen Medium\n";
+							cout << "You have chosen Medium.\n";
 							resetDiff = 'm';
 							numCups = 4;
 							numCupsText = "(1,2,3,4)";
 							break;
 						case 'h':
-							cout << "You Have chosen Hard\n";
+							cout << "You Have chosen Hard.\n";
 							resetDiff = 'h';
 							numCups = 5;
 							numCupsText = "(1,2,3,4,5)";
@@ -103,7 +105,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				}
 			}
 
-			cout << "Guess which cup has the little ball. " << numCupsText << "\n";
+			cout << "Guess which cup has the little ball in it. " << numCupsText << "\n";
 
 			// Generate the answer to which cup the ball is in.
 			answerCup = rand() % numCups + 1;
@@ -114,6 +116,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				// Input for the guessed cup.
 				cin >> guessCup;
 
+				// Check to see if guessCup is a vaild int.
 				if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
 				{
 					cin.clear();
@@ -166,7 +169,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			else
 			{
 				// Just incase the player has gotten to this part and didn't end the game and didn't win or did win.
-				cout << "How did you get to this output???\nYou didn't win nor lost...\nSkiping ahead...\n";
+				cout << "How did you get to this output, " << fName << "???\nYou didn't win nor lost...\nSkiping ahead...\n";
 			}
 
 			cout << "New Game? (y/n)\n";
@@ -177,6 +180,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				// This is the input for the new game.
 				cin >> newGame;
 
+				// Check to see if newGame is a valid char.
 				if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
 				{
 					cin.clear();
@@ -200,7 +204,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					else if (newGame == 'n' || newGame == 'N')
 					{
 						// This is to check if the player said no.
-						cout << "OK, bye...\n";
+						cout << "OK, " << fName << " bye...\n";
 
 						// This is to say the game isn't restarting
 						starting = false;
@@ -209,8 +213,8 @@ int _tmain(int argc, _TCHAR* argv[])
 					}
 					else
 					{
-						// This is if you choose an invalid awnser.
-						cout << "Please Choose another awnser\n";
+						// This is if you choose an invalid answser.
+						cout << "Please Choose another answer.\n";
 
 						// This is to restart to choose again.
 						newGame = 'a';
