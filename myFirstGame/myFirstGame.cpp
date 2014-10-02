@@ -87,14 +87,14 @@ int _tmain(int argc, _TCHAR* argv[])
 						case 'm':
 							cout << "You have chosen Medium.\n";
 							resetDiff = 'm';
-							numCups = 4;
-							numCupsText = "(1,2,3,4)";
+							numCups = 5;
+							numCupsText = "(1,2,3,4,5)";
 							break;
 						case 'h':
 							cout << "You Have chosen Hard.\n";
 							resetDiff = 'h';
-							numCups = 5;
-							numCupsText = "(1,2,3,4,5)";
+							numCups = 7;
+							numCupsText = "(1,2,3,4,5,7)";
 							break;
 						default:
 							// Needed this for the chance the player inputs the wrong letter.
