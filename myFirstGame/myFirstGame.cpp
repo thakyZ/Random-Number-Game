@@ -58,7 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			cout << "What difficulty do you want to play on, " << fName << "?\n";
 
-			cout << "[e]asy, [m]edium, [h]ard\n";
+			cout << "[e]asy, [m]edium, [h]ard, e[x]treme\n";
 
 			// The difficulty selector.
 			while (resetDiff != diff)
@@ -204,7 +204,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					else if (newGame == 'n' || newGame == 'N')
 					{
 						// This is to check if the player said no.
-						cout << "OK, " << fName << " bye...\n";
+						cout << "OK, " << fName << ", good bye...\n";
 
 						// This is to say the game isn't restarting
 						starting = false;
@@ -223,5 +223,6 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 		}
 	}
+
 	return 0;
 }
