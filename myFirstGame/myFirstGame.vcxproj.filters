@@ -16,12 +16,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
+    <None Include="..\..\..\..\..\..\program files (x86)\microsoft visual studio 10.0\vc\include\iostream" />
+    <None Include="..\..\..\..\..\..\program files (x86)\microsoft visual studio 10.0\vc\include\cstdlib" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\program files (x86)\microsoft visual studio 10.0\vc\include\time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
