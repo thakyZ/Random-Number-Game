@@ -17,6 +17,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	char fName[20];
 
 	cout << "Welcome to guess which cup has the little ball.\n";
+	cout << "Copyright (c) 2014 Nick Mullally";
 
 	cout << "Created by, Nick Mullally\n\n";
 
