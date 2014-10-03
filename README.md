@@ -11,7 +11,7 @@ This game is a, 32-bit C++ Console Application.
 
 ---
 
-You first type in your name. Then you can choose the difficulty you want to play on. After that a number will randomly generate, choosing which cup number the ball will be under. If you get it right, you win; if you don't get it right you loose. If you want to play again there is an option at the end for a restart. The game play is dynamic and doesn't take up to much memory infact it doesn't take up more than 2 kb. (I haven't messured out how much it takes up on the hardest of difficulties.
+You first type in your name. Then you can choose the difficulty you want to play on. After that a number will randomly generate, choosing which cup number the ball will be under. If you get it right, you win; if you don't get it right you loose. If you want to play again there is an option at the end for a restart. The game play is dynamic and doesn't take up to much memory infact it doesn't take up more than 2 KiB. (I haven't messured out how much it takes up on the hardest of difficulties).
 
 ---
 
