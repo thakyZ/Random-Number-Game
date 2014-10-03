@@ -1,5 +1,5 @@
 // myFirstGame.cpp : Defines the entry point for the console application.
-// Created by, Nick Mullally a.k.a. Nire Inicana or thakyZ
+// Created by, Nick Mullally a.k.a. Nire Inicana / thakyZ
 
 #include "stdafx.h"
 #include <iostream>
@@ -174,7 +174,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 			else
 			{
-				// Just incase the player has gotten to this part and didn't end the game and didn't win or did win.
+				// * - Easter Egg - * Just incase the player has gotten to this part and didn't end the game and didn't win or did win.
 				cout << "How did you get to this output, " << fName << "???\nYou didn't win nor lost...\nSkiping ahead...\n";
 			}
 
