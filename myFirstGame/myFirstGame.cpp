@@ -7,6 +7,50 @@
 #include <time.h>
 using namespace std;
 
+const char checkCinCChar(const char var)
+{
+	if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
+	{
+		cin.clear();
+		cin.ignore(256, '\n');
+
+		cout << "please use a valid const char.\n";
+	}
+	else
+	{
+		return var;
+	}
+}
+
+char checkCinCChar(char var)
+{
+	if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
+	{
+		cin.clear();
+		cin.ignore(256, '\n');
+
+		cout << "please use a valid char.\n";
+	}
+	else
+	{
+		return var;
+	}
+}
+
+int checkCinChar(int var)
+{
+	if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
+	{
+		cin.clear();
+		cin.ignore(256, '\n');
+
+		cout << "please use a valid const .\n";
+	}
+	else
+	{
+		return var;
+	}
+}
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -14,7 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	system("cls");
 
 	// Variable for the player's name.
-	char fName[20];
+	const char *fName = "";
 
 	cout << "Welcome to guess which cup has the little ball.\n";
 	cout << "Copyright (c) 2014 Nick Mullally";
@@ -27,7 +71,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	cin >> fName;
 
 	// Check if fName is a valid char.
-	if (cin.fail() && (cin.peek() != EOF || cin.peek() != '\n'))
+	if (checkCChar(fName))
 	{
 		cin.clear();
 		cin.ignore(256,'\n');
@@ -42,6 +86,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Start of the game.
 		while (starting == true)
 		{
+			starting = false;
+
 			int answerCup = 0; // The correct answer for the cup.
 			int guessCup = 0; // The Number for the guessed cup.
 			char diff = 'z'; // The difficulty selector.
@@ -59,7 +105,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			cout << "What difficulty do you want to play on, " << fName << "?\n";
 
-			cout << "[e]asy, [m]edium, [h]ard, e[x]treme\n";
+			cout << "[E]asy, [M]edium, [H]ard, E[x]treme\n";
 
 			// The difficulty selector.
 			while (resetDiff != diff)
@@ -80,24 +126,28 @@ int _tmain(int argc, _TCHAR* argv[])
 					switch (diff)
 					{
 						case 'e':
+						case 'E':
 							cout << "You have chosen Easy.\n";
 							resetDiff = 'e';
 							numCups = 3;
 							numCupsText = "(1,2,3)";
 							break;
 						case 'm':
+						case 'M':
 							cout << "You have chosen Medium.\n";
 							resetDiff = 'm';
 							numCups = 5;
 							numCupsText = "(1,2,3,4,5)";
 							break;
 						case 'h':
+						case 'H':
 							cout << "You have chosen Hard.\n";
 							resetDiff = 'h';
 							numCups = 7;
 							numCupsText = "(1,2,3,4,5,7)";
 							break;
 						case 'x':
+						case 'X':
 							cout << "You have chosen Extreme.\n";
 							resetDiff = 'x';
 							numCups = 11;
@@ -120,6 +170,8 @@ int _tmain(int argc, _TCHAR* argv[])
 			// Start the game.
 			while (gameCheck == false)
 			{
+				gameCheck = true;
+
 				// Input for the guessed cup.
 				cin >> guessCup;
 
@@ -184,6 +236,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			// This is to select a new game.
 			while (newGame == 'a')
 			{
+				// Set newGame to default variable,
+				newGame = 'z';
+
 				// This is the input for the new game.
 				cin >> newGame;
 
